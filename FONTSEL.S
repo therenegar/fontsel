@@ -97,8 +97,42 @@ resident_restore:
     jmp resident_load_custom
 
 /*
+ * The resident 8x16 font is valid only in ordinary 80x25 VGA text modes.
+ * In particular, never touch font-plane memory while a program is entering
+ * a graphics mode, and do not force a 16-scanline font into 43/50-line text.
+ * Return CF clear only when the BIOS data area describes 80x25, 8x16 text.
+ */
+resident_mode_is_80x25:
+    push ax
+    push ds
+    mov ax, 0x0040
+    mov ds, ax
+    mov al, byte ptr [0x49]            /* current video mode */
+    cmp al, 2
+    je 1f
+    cmp al, 3
+    je 1f
+    cmp al, 7
+    jne 2f
+1:  cmp word ptr [0x4a], 80            /* text columns */
+    jne 2f
+    cmp byte ptr [0x84], 24            /* rows minus one */
+    jne 2f
+    cmp word ptr [0x85], 16            /* character height */
+    jne 2f
+    pop ds
+    pop ax
+    clc
+    ret
+2:  pop ds
+    pop ax
+    stc
+    ret
+
+/*
  * INT 10h hook.  Mode-setting calls are passed to the BIOS first, then the
- * selected font is restored.  All other calls are chained without change.
+ * selected font is restored only if the resulting mode is 80x25 8x16 text.
+ * All other calls are chained without change.
  */
 int10_handler:
     cmp ah, 0x00
@@ -118,7 +152,10 @@ int10_mode_set:
     push bp
     push ds
     push es
+    call resident_mode_is_80x25
+    jc 1f
     call resident_restore
+1:
     pop es
     pop ds
     pop bp
