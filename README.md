@@ -1,5 +1,7 @@
 # DOS Display Font Selector
 
+Download the latest release [here](https://github.com/therenegar/fontsel/releases/download/v0.6/FONTSEL-0.6.zip).
+
 **FONTSEL** recreates the mystical IBM PS/2 Model 30-286 font selector on ordinary VGA-compatible DOS machines - [read the history here](https://int10h.org/blog/2022/06/ibm-ps2-30-286-hidden-vga-fonts/).
 
 It allows for font selection, with live previewing and system-wide activation - with a resident component that keeps the chosen font active even after BIOS video mode changes.
