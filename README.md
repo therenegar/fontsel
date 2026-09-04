@@ -93,25 +93,16 @@ The menu, saved screen, catalogue and disk font buffer are transient.
 Font sources
 ------------
 
-HOWARD16, ELITE16, OAKLEY16 (Oak8), OAKLYB16 (Oak9), NEIL16, ITALIC16, and CGA16 come from IBM's internally distributed HOWARD the FONT 3.61 archive by Alan E. Beelitz and contributors.
+HOWARD16, ELITE16, OAKLEY16 (Oak8), OAKLYB16 (Oak9), NEIL16, ITALIC16, and CGA16 come from IBM's internally distributed HOWARD the FONT 3.61 archive by Alan E. Beelitz and contributors. http://int10h.org/filez/howard361.zip
 
-Olympiad EGA derives from the recovered IBM Olympiad EGA 8x14 raster font.
+Olympiad EGA derives from the recovered IBM Olympiad EGA 8x14 raster font. http://int10h.org/filez/Olympiad_ProtoFonts_Disks.zip
 It is mapped to CP437 and padded with one blank scanline above and below to fit a VGA 8x16 cell without scaling its original glyphs.  The recovered font conversion is credited to VileR/int10h.org and distributed under CC BY-SA 4.0; see LICENSE-OLYMPIAD.TXT.
 
 
 Technical notes
 ---------------
 
-The TSR hooks INT 10h and INT 2Fh.  It chains normal video BIOS calls.  For
-AH=00h mode sets, it calls the original BIOS first and then reloads the
-committed font using the original INT 10h handler.  It does not intercept or
-fight explicit application font-load requests.
+The TSR hooks INT 10h and INT 2Fh.  It chains normal video BIOS calls.  For AH=00h mode sets, it calls the original BIOS first and then reloads the committed font using the original INT 10h handler.  It does not intercept or fight explicit application font-load requests.
 
-The private INT 2Fh interface begins at AX=D7F0h.  This is provisional and
-may change after hardware testing.
+The private INT 2Fh interface begins at AX=D7F0h.  This is provisional and may change after hardware testing.
 
-
-Distribution note
------------------
-
-The provenance of the historical HOWARD font files is documented above, but their public-redistribution status is not clearly stated in the available archive online. The Olympiad-derived font has separate CC BY-SA 4.0 terms in LICENSE-OLYMPIAD.TXT.
