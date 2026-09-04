@@ -1,8 +1,10 @@
 # VGA Display Font Selector
 
-<img width="720" height="400" alt="Font selection dialog" src="https://github.com/user-attachments/assets/73645a12-0d25-45b7-8cc6-14b9804715c0" />
+<img width="720" height="600" alt="ISO" src="https://github.com/user-attachments/assets/218517d7-e823-4bc8-b354-42fa9221efab" />
+<img width="720" height="600" alt="charset" src="https://github.com/user-attachments/assets/73a31d68-0997-4cb0-bea9-435ffeec07b6" />
+<img width="720" height="600" alt="help" src="https://github.com/user-attachments/assets/1313db51-426c-4b03-8d96-97b313a2f728" />
 
-<img width="720" height="400" alt="Help screen" src="https://github.com/user-attachments/assets/4c8c300c-b2eb-484a-9bee-e90521f4b17f" />
+
 
 ----
 
