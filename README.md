@@ -1,4 +1,4 @@
-# VGA Display Font Selector
+# DOS Display Font Selector
 
 **FONTSEL** recreates the mystical IBM PS/2 Model 30-286 font selector on ordinary VGA-compatible DOS machines - [read the history here](https://int10h.org/blog/2022/06/ibm-ps2-30-286-hidden-vga-fonts/).
 
