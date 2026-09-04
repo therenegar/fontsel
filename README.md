@@ -1,10 +1,16 @@
 # VGA Display Font Selector
+
+<img width="720" height="400" alt="Font selection dialog" src="https://github.com/user-attachments/assets/73645a12-0d25-45b7-8cc6-14b9804715c0" />
+
+<img width="720" height="400" alt="Help screen" src="https://github.com/user-attachments/assets/4c8c300c-b2eb-484a-9bee-e90521f4b17f" />
+
 ----
 
 FONTSEL recreates the mystical IBM PS/2 Model 30-286 font selector on ordinary VGA-compatible DOS machines.
 It allows for font selection, with live previewing, and application system-wide - with a resident component that keeps the chosen font active even after BIOS video mode changes.
 
 The 5 fonts that were hidden in the PS/2 30-286 are included. Additional fonts (up to a maximum of 25) can be added to the `\fonts` sub-directory (see Customizing fonts).
+
 
 Requirements
 ------------
