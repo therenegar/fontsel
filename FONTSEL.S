@@ -314,6 +314,7 @@ transient_start:
     push cs
     pop ds
     cld
+    call initialize_paths
     call parse_command_line
     cmp byte ptr [request_help], 0
     jne show_help
@@ -608,6 +609,102 @@ print_asciiz:
     jmp 1b
 2:  ret
 
+/*
+ * Build absolute resource paths from the executable pathname stored after
+ * the DOS environment block.  DOS 3.0+ supplies this pathname.  If it is not
+ * available, retain the traditional current-directory-relative fallback.
+ */
+initialize_paths:
+    push ax
+    push bx
+    push cx
+    push dx
+    push si
+    push di
+    push es
+    mov ax, word ptr [0x2c]
+    or ax, ax
+    jz path_fallback
+    mov es, ax
+    xor si, si
+    mov cx, 0x7fff
+1:  cmp byte ptr es:[si], 0
+    jne 2f
+    cmp byte ptr es:[si+1], 0
+    je 3f
+2:  inc si
+    loop 1b
+    jmp path_fallback
+3:  add si, 2
+    cmp word ptr es:[si], 0
+    je path_fallback
+    add si, 2                         /* ES:SI = executable pathname */
+    cmp byte ptr es:[si], 0
+    je path_fallback
+    mov di, offset font_prefix
+    mov bx, di                        /* updated to byte after last slash */
+    mov cx, 120
+4:  mov al, byte ptr es:[si]
+    inc si
+    or al, al
+    jz 6f
+    mov byte ptr [di], al
+    inc di
+    cmp al, '\\'
+    je 5f
+    cmp al, '/'
+    jne 7f
+5:  mov bx, di
+7:  loop 4b
+    jmp path_fallback
+6:  cmp bx, offset font_prefix
+    je path_fallback
+    push ds
+    pop es
+    mov di, bx                        /* discard executable filename */
+    mov si, offset font_dir_leaf
+    call copy_asciiz
+    jmp build_resource_paths
+
+path_fallback:
+    push ds
+    pop es
+    mov si, offset font_dir_leaf
+    mov di, offset font_prefix
+    call copy_asciiz
+
+build_resource_paths:
+    push ds
+    pop es
+    mov si, offset font_prefix
+    mov di, offset font_list_path
+    call copy_asciiz
+    dec di
+    mov si, offset font_list_leaf
+    call copy_asciiz
+    mov si, offset font_prefix
+    mov di, offset last_choice_path
+    call copy_asciiz
+    dec di
+    mov si, offset last_choice_leaf
+    call copy_asciiz
+    pop es
+    pop di
+    pop si
+    pop dx
+    pop cx
+    pop bx
+    pop ax
+    ret
+
+/* Copy DS:SI NUL string to ES:DI, leaving DI immediately after the NUL. */
+copy_asciiz:
+1:  lodsb
+    stosb
+    or al, al
+    jnz 1b
+    ret
+
 /* Read up to 25 filename=display name records from fonts\fonts.lst. */
 load_font_list:
     push es
@@ -734,12 +831,11 @@ load_named_font:
     push ds
     pop es
     mov di, offset font_path
-    mov bx, 6
-1:  mov al, byte ptr [font_prefix+bx-1]
-    mov byte ptr [di+bx-1], al
-    dec bx
-    jnz 1b
-    add di, 6
+    push si
+    mov si, offset font_prefix
+    call copy_asciiz
+    dec di
+    pop si
 2:  lodsb
     stosb
     or al, al
@@ -1461,7 +1557,7 @@ help_text:
     .ascii "        /U          Restore the default VGA font and unload the TSR\r\n"
     .ascii "        /?          Display this help screen\r\n"
     .ascii "\r\n"
-    .ascii "Run FONTSEL from the directory containing its fonts subdirectory.\r\n$"
+    .ascii "The fonts subdirectory is located relative to FONTSEL itself.\r\n$"
 msg_no_vga: .ascii "FONTSEL requires VGA or compatible hardware.\r\n$"
 msg_bad_mode:.ascii "FONTSEL requires an 80-column text mode.\r\n$"
 msg_bad_font_list:.ascii "FONTSEL cannot read a valid fonts\\fonts.lst file.\r\n$"
@@ -1479,10 +1575,13 @@ msg_previous_resident:
 msg_previous_command:
     .ascii "PS2FONT.COM /U\r\n\r\nThen run FONTSEL again.\r\n$"
 
-font_list_path: .asciz "fonts\\fonts.lst"
-last_choice_path:.asciz "fonts\\fontsel.dat"
-font_prefix:    .ascii "fonts\\"
-font_path:      .space 20, 0
+font_dir_leaf:  .asciz "fonts\\"
+font_list_leaf: .asciz "fonts.lst"
+last_choice_leaf:.asciz "fontsel.dat"
+font_prefix:    .space 128, 0
+font_list_path: .space 141, 0
+last_choice_path:.space 141, 0
+font_path:      .space 141, 0
 requested_file:.space FILE_SIZE, 0
 font_names:     .space MAX_FONTS * NAME_SIZE, 0
 font_files:     .space MAX_FONTS * FILE_SIZE, 0
