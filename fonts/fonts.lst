@@ -1,0 +1,12 @@
+# FONTSEL runtime catalogue: filename=display name
+# Keep STANDARD as the first entry. Up to 25 names of 12 characters are shown.
+STANDARD=Standard VGA
+PS2THIN.F16=PS/2 Thin
+HOWARD16.F16=Howard
+ELITE16.F16=Elite
+OAK8.F16=Oak8
+OAK9.F16=Oak9
+NEIL16.F16=Neil
+OLYMEGA.F16=Olympiad EGA
+ITALIC16.F16=Italic
+CGA16.F16=CGA
