@@ -1,19 +1,16 @@
 # VGA Display Font Selector
 
+**FONTSEL** recreates the mystical IBM PS/2 Model 30-286 font selector on ordinary VGA-compatible DOS machines - [read the history here](https://int10h.org/blog/2022/06/ibm-ps2-30-286-hidden-vga-fonts/).
+
+It allows for font selection, with live previewing and system-wide activation - with a resident component that keeps the chosen font active even after BIOS video mode changes.
+The 5 secret fonts that were hidden in the PS/2 30-286 are included. Additional fonts (up to a maximum of 25) can be added to the `\fonts` sub-directory.
+
 <img width="720" height="600" alt="ISO" src="https://github.com/user-attachments/assets/218517d7-e823-4bc8-b354-42fa9221efab" />
+<img width="720" height="600" alt="fatscii" src="https://github.com/user-attachments/assets/be9534f4-603f-4795-bfb3-1bdcb07a9d54" />
 <img width="720" height="600" alt="charset" src="https://github.com/user-attachments/assets/73a31d68-0997-4cb0-bea9-435ffeec07b6" />
 <img width="720" height="600" alt="help" src="https://github.com/user-attachments/assets/1313db51-426c-4b03-8d96-97b313a2f728" />
 
-
-
 ----
-
-FONTSEL recreates the mystical IBM PS/2 Model 30-286 font selector on ordinary VGA-compatible DOS machines. Read more here: https://int10h.org/blog/2022/06/ibm-ps2-30-286-hidden-vga-fonts/
-
-It allows for font selection, with live previewing, and application system-wide - with a resident component that keeps the chosen font active even after BIOS video mode changes.
-
-The 5 fonts that were hidden in the PS/2 30-286 are included. Additional fonts (up to a maximum of 25) can be added to the `\fonts` sub-directory (see Customizing fonts).
-
 
 Requirements
 ------------
@@ -23,8 +20,9 @@ Requirements
 * 80-column text mode 2, 3, or 7
 * 8086 or later CPU (the binary deliberately contains no 286/386-only code)
 
-Use
----
+
+Usage
+-----
 
 Change to the directory containing FONTSEL.COM and run:
 ```
