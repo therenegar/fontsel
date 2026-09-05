@@ -7,11 +7,10 @@ Download the latest release [here](https://github.com/therenegar/fontsel/release
 It allows for font selection, with live previewing and system-wide activation - with a TSR component that keeps the chosen font active even after BIOS video mode changes.
 The secret fonts that were hidden in the PS/2 30-286 are included. Additional fonts (up to a maximum of 25) can be added to the `\FONTS` sub-directory.
 
-<img width="720" height="600" alt="neil" src="https://github.com/user-attachments/assets/f7f8e10e-e5f6-448e-bd3e-52241a879bf2" />
-<img width="720" height="600" alt="fatscii" src="https://github.com/user-attachments/assets/d838344e-9732-4cc1-b8f4-86a6bbebcd26" />
-<img width="720" height="600" alt="scribble" src="https://github.com/user-attachments/assets/b8ae93ce-2070-47a1-80e0-ca9a8ca77eac" />
-<img width="720" height="600" alt="charset" src="https://github.com/user-attachments/assets/0ea75dc7-704e-489b-926f-84c76ac31d13" />
-<img width="720" height="600" alt="help" src="https://github.com/user-attachments/assets/2077d639-502f-48ae-8388-5ff589802996" />
+<img width="720" height="600" alt="Preview-Neil" src="https://github.com/user-attachments/assets/1e0ef738-302e-458d-ab54-a85f0b2e46b4" />
+<img width="720" height="600" alt="charset" src="https://github.com/user-attachments/assets/c2d88021-d37f-4f75-9faa-ef858ef841dd" />
+<img width="720" height="600" alt="help" src="https://github.com/user-attachments/assets/697e05bc-2db2-440a-8cb4-302e1173c008" />
+
 
 ----
 
