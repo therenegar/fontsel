@@ -102,7 +102,15 @@ LOADHIGH C:\FONTSEL\FONTSEL /L
 Font sources
 ------------
 
-HOWARD16 (Howard), ELITE16 (Elite), OAKLEY16 (Oakley), OAKLYB16 (Oakley Big), NEIL16 (Neil), ITALIC16 (Italic), and CGA16 (CGAlike) come from IBM's internally distributed HOWARD the FONT 3.61 archive by Alan E. Beelitz and contributors. http://int10h.org/filez/howard361.zip
+ISO.F16 is extracted from IBM PC-DOS 5.02 ISO.CPI
+
+DOS-J.F16 is extracted from IBM PC-DOS for DOS/V
+
+DOS-V.F16 is extracted from Microsoft MS-DOS/V
+
+ELITE.F16, OAK8.F16, OAK9.F16 and SANSERIF.F16 were extracted directly from the Video BIOS ROM image for the IBM PS/2 model 30-286 Rev 0. 
+
+HOWARD.F16, OAKLEY.F16, OAKLYB.F16,. NEIL.F16, ITALIC.F16, OLDENG.F16 and CGA.F16 come from IBM's internally distributed HOWARD the FONT 3.61 archive by Alan E. Beelitz and contributors. These files have been edited to fix long-standing bugs in some of the glyphs.
 
 
 Technical notes
