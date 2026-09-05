@@ -15,7 +15,7 @@ The secret fonts that were hidden in the PS/2 30-286 are included. Additional fo
 
 ----
 
-Requirements
+RequirementsUpdate README.md
 ------------
 
 * MS-DOS, PC DOS, DR-DOS, FreeDOS or a compatible real-mode DOS (3.3 or higher)
@@ -91,8 +91,12 @@ If you're looking for more fonts, [try here](https://github.com/viler-int10h/vga
 Memory Usage
 ------------
 
-Only one 4096-byte font plus the two interrupt handlers remains resident. This can be moved entirely to upper memory with the LOADHIGH command. 
-The menu, catalogue and disk font buffer are transient.
+Only one 4096-byte font plus the two interrupt handlers remains resident. The menu, catalogue and disk font buffer are transient.
+Use `LOADHIGH` to move the TSR completely to upper memory (consuming no conventional RAM).
+e.g. place the following line in `AUTOEXEC.BAT` to apply your chosen font at boot, and load the TSR into upper memory.
+```
+LOADHIGH C:\FONTSEL\FONTSEL /L
+```
 
 
 Font sources
