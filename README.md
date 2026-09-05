@@ -4,8 +4,8 @@ Download the latest release [here](https://github.com/therenegar/fontsel/release
 
 **FONTSEL** recreates the mystical IBM PS/2 Model 30-286 font selector on ordinary VGA-compatible DOS machines - [read the history here](https://int10h.org/blog/2022/06/ibm-ps2-30-286-hidden-vga-fonts/).
 
-It allows for font selection, with live previewing and system-wide activation - with a resident component that keeps the chosen font active even after BIOS video mode changes.
-The 5 secret fonts that were hidden in the PS/2 30-286 are included. Additional fonts (up to a maximum of 25) can be added to the `\fonts` sub-directory.
+It allows for font selection, with live previewing and system-wide activation - with a TSR component that keeps the chosen font active even after BIOS video mode changes.
+The secret fonts that were hidden in the PS/2 30-286 are included. Additional fonts (up to a maximum of 25) can be added to the `\FONTS` sub-directory.
 
 <img width="720" height="600" alt="neil" src="https://github.com/user-attachments/assets/f7f8e10e-e5f6-448e-bd3e-52241a879bf2" />
 <img width="720" height="600" alt="fatscii" src="https://github.com/user-attachments/assets/d838344e-9732-4cc1-b8f4-86a6bbebcd26" />
@@ -27,22 +27,22 @@ Requirements
 Usage
 -----
 
-Change to the directory containing FONTSEL.COM and run:
+Change to the directory containing `FONTSEL.COM` and run:
 ```
     FONTSEL
 ```
-On the first invocation it installs a resident manager and opens the menu.
+On the first invocation it installs a TSR manager and opens the selector menu.
 Later invocations detect the resident copy and reopen the selector without installing a second copy.
 
 - Left/Right  selects and preview a font
 - Enter       applies the highlighted font
 - Escape      cancels and restore the previous font
 
-To restore the default video ROM font and remove the resident component:
+To restore the default video ROM font and completely unload the TSR component:
 ```
     FONTSEL /U
 ```
-To draw a complete CP437 character demonstration before opening the selector:
+To draw a full screen CP437 character set demonstration:
 ```
     FONTSEL /C
 ```
@@ -50,14 +50,14 @@ To load the last font that was applied, without opening the selector:
 ```
     FONTSEL /L
 ```
-This is suitable for use in AUTOEXEC.BAT to apply your chosen font at startup. 
+> This is suitable for use in AUTOEXEC.BAT to apply your chosen font at each boot. 
 
-To apply a specific font file in the `\fonts` sub-directory, without opening the selector:
+To apply a specific font file in the `\FONTS` sub-directory, without opening the selector:
 ```
     FONTSEL /L FONTNAME.F16
 ```
 
-Both /L forms install the resident manager when necessary and otherwise update the installed copy. 
+Both /L forms will install the TSR if necessary.
 
 For command-line help:
 ```
@@ -71,10 +71,9 @@ leave that program pointing into released memory.  In that case, reboot to remov
 Font catalogue
 --------------
 
-`FONTSEL.COM` and the fonts directory must remain together. 
-Run FONTSEL from the directory containing FONTSEL.COM.
+`FONTSEL.COM` and the `\FONTS` sub-directory must remain together. 
 
-Each non-comment line in `fonts.lst` has this form:
+Each line in `FONTS\FONTS.LST` has this form:
 ```
     filename=Display name
 ```
@@ -83,21 +82,23 @@ The first entry must be:
     STANDARD=Boca
 ```
 STANDARD is a special entry for the adapter ROM font and is not a disk file.
-A maximum of 25 fonts can be specified. Display names are limited to 12 characters.
+A maximum of 25 fonts can be specified (otherwise not enough room on the dialog!). Display names are limited to 12 characters.
 Every external font must be exactly 4096 bytes: 256 glyphs, 8 pixels wide and 16 scanlines high. 
+
+If you're looking for more fonts, [try here](https://github.com/viler-int10h/vga-text-mode-fonts)
 
 
 Memory Usage
 ------------
 
-Only one 4096-byte font plus the two interrupt handlers remains resident. This can be moved to upper memory with LOADHIGH or XMS memory managers.
-The menu, saved screen, catalogue and disk font buffer are transient.
+Only one 4096-byte font plus the two interrupt handlers remains resident. This can be moved entirely to upper memory with the LOADHIGH command. 
+The menu, catalogue and disk font buffer are transient.
 
 
 Font sources
 ------------
 
-HOWARD16, ELITE16, OAKLEY16 (Oak8), OAKLYB16 (Oak9), NEIL16, ITALIC16, and CGA16 come from IBM's internally distributed HOWARD the FONT 3.61 archive by Alan E. Beelitz and contributors. http://int10h.org/filez/howard361.zip
+HOWARD16 (Howard), ELITE16 (Elite), OAKLEY16 (Oakley), OAKLYB16 (Oakley Big), NEIL16 (Neil), ITALIC16 (Italic), and CGA16 (CGAlike) come from IBM's internally distributed HOWARD the FONT 3.61 archive by Alan E. Beelitz and contributors. http://int10h.org/filez/howard361.zip
 
 
 Technical notes
