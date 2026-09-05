@@ -15,8 +15,8 @@ The secret fonts that were hidden in the PS/2 30-286 are included. Additional fo
 
 ----
 
-RequirementsUpdate README.md
-------------
+Sys Requirements
+---------------
 
 * MS-DOS, PC DOS, DR-DOS, FreeDOS or a compatible real-mode DOS (3.3 or higher)
 * VGA or a VGA-compatible BIOS supporting INT 10h font services
