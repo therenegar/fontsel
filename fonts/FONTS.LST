@@ -8,21 +8,21 @@ SANSERIF.F16=Sanserif
 # IBM HOWARD the FONT contributions
 HOWARD.F16=Howard
 NEILFIX.F16=Neil
-CGA.F16=CGAlike
 ITALIC.F16=Italic
 OLDENG.F16=Olde Eng
+CGA.F16=CGAlike
 
-# Other DOS systems
 ISO.F16=IBM ISO
+BOLDSANS.F16=Bold Sans
+TALLSANS.F16=Tall Sans
 DOS-J.F16=DOS/V
 DOS-V.F16=MSDOS/V
 
-# Community contributions
 ROMAN.F16=Roman
-ELERGON.F16=Elergon
 FATSCII.F16=Fatscii
+ELERGON.F16=Elergon
 POLICE.F16=Police
 ESPY.F16=Espy
+
 SCRIBBLE.F16=Scribble
 SCRIPT.F16=Script
-
