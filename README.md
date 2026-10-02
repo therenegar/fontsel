@@ -1,4 +1,6 @@
-# DOS Display Font Selector
+<img width="64" height="64" alt="for DOS" src="https://github.com/user-attachments/assets/f53ec307-17a9-42f4-851f-9958938572bb" />
+
+# FONTSEL.COM
 
 Download the latest release [here](https://github.com/therenegar/fontsel/releases/download/v0.6/FONTSEL-0.6.zip).
 
